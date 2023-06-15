@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Todos</h1>
+    <h1>Total todos = {{ totalTodos }}</h1>
     <TodosList />
     <TodoForm />
   </div>
@@ -9,10 +10,19 @@
 <script>
 import TodosList from "./components/TodosList.vue";
 import TodoForm from "./components/TodoForm.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: { TodosList, TodoForm },
+  computed: {
+    ...mapGetters({
+      totalTodos: "pendingTodos",
+    }),
+    // totalTodos() {
+    //   return this.$store.getters.pendingTodos;
+    // },
+  },
 };
 </script>
 
